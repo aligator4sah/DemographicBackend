@@ -20,8 +20,8 @@ export class UserController {
         return {};
     }
 
-    // @Post()
-    // createUser(@Body() createUserDto: CreateUserDto) {
-    //     this.userService.create(createUserDto);
-    // }
+    @Post()
+    createUser(@Body() createUserDto: CreateUserDto) {
+         this.userService.createUser(createUserDto);
+    }
 }

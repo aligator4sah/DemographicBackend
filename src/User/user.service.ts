@@ -1,7 +1,8 @@
 import {Component, Inject} from "@nestjs/common";
 
 import {Repository} from "typeorm";
-import {User} from "./user.entity";
+import {UserEntity} from "./user.entity";
+import {User} from "./Interface/user.interface";
 
 
 @Component()
@@ -10,15 +11,15 @@ export class UserService {
 
     constructor(
       @Inject('UserRepositoryToken')
-      private readonly userRepository: Repository<User>
+      private readonly userRepository: Repository<UserEntity>
     ){}
 
 
-    create(user: User) {
-
+    public async createUser(user: User): Promise<UserEntity> {
+        return await this.userRepository.save(user);
     }
 
-    async findAll(): Promise<User[]> {
+    public async findAll(): Promise<UserEntity[]> {
         return await this.userRepository.find();
     }
 }
